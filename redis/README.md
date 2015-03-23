@@ -1,33 +1,35 @@
-About this repository
+=About this repository
 
-Redis Dockerfile
+==Redis Dockerfile
+
   This repository is for building Redis images published to the public Docker Hub Registry.
   
-Base image 
+==Base image 
+
   centos
   
-Installation 
+==Installation 
   1,install Docker first 
   2,download this Dockerfile to your server ,e.g /tmp/docker
   3,enter into /tmp/docker and build 
   cd /tmp/docker
   docke build -t opscolin/redis:latest .
 
-Usage:
-  Run redis-server 
+==Usage:
+  ===Run redis-server 
   docker run -d --name redis_server opscolin/redis_latest
   here you can use "docker ps -l" to check the container state started just now 
   [root@localtest Dockerfiles]# docker ps -l
   CONTAINER ID        IMAGE                   COMMAND                CREATED             STATUS                      PORTS               NAMES                      ecstatic_pare       
   263f6e42a126        opscolin/redis:latest   "/usr/sbin/redis-ser   18 minutes ago      Up 18 minutes               6379/tcp            redis_server
   
-  Run redis-server with persistent data directory. (creates appendonly.aof)
+  ===Run redis-server with persistent data directory. (creates appendonly.aof)
   docker run -d --name redis_server -v /Data/redis:/usr/local/redis/var opscolin/redis:lastest
   
-  Run redis-server with persistent data directory and password.
+  ===Run redis-server with persistent data directory and password.
   docker run -d -p 6379:6379 -v /Data/redis:/usr/local/redis/var --name redis_server opscolin/redis:latest --requirepass <password> 
   
-  link redis_server container with another container 
+  ===link redis_server container with another container 
   docker run -i -t --link redis_server:db opscolin/centos:colin /bin/bash
   after enter the new container , 
   env |grep 'DB'
