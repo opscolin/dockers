@@ -1,8 +1,7 @@
 FROM centos
 MAINTAINER Colin
 RUN yum install -y openssh-server
-RUN yum install -y net-tools 
-RUN yum install -y hostname
+RUN yum install -y net-tools hostname tar wget 
 RUN echo "root:root" | chpasswd
 EXPOSE 22
 RUN ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key
