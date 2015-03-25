@@ -14,9 +14,10 @@ Base image
 Installation
 --------------------------------
     1,install Docker first 
-    2,download this Dockerfile to your server ,e.g /tmp/docker
+    2,download this Dockerfile and related files  to your server ,e.g /tmp/docker
     3,enter into /tmp/docker and build 
       cd /tmp/docker
+      wget https://github.com/opscolin/dockers/blob/master/redis/Dockerfile
       docke build -t opscolin/redis:latest .
 
 Usage:
