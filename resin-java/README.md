@@ -12,10 +12,10 @@ resin-java Dockerfile
   
 ### Installation <br/>
     1,install Docker first 
-    2,download this Dockerfile to your server ,e.g /tmp/docker
+    2,download this Dockerfile and related files to your server ,e.g /tmp/docker
     3,enter into /tmp/docker and build 
       cd /tmp/docker
-      git clone 
+      wget https://github.com/opscolin/dockers/blob/master/resin-java/Dockerfile
       docke build --rm -t opscolin/resin-java .
       
 ### Usage <br/>
