@@ -17,9 +17,9 @@
 
 ### as master-slave 
   # set master
-  docker run -d -p 3306:3306 --name='master' -e REPLICATION_MASTER=true dockercolin/mysql_ms:5.6.24
+    docker run -d -p 3306:3306 --name='master' -e REPLICATION_MASTER=true dockercolin/mysql_ms:5.6.24
   # set slave 
-  docker run -d -p 3307:3306 --name='slave' -e REPLICATION_SLAVE=true --link master:mysql dockercolin/mysql_ms:5.6.24
+  d ocker run -d -p 3307:3306 --name='slave' -e REPLICATION_SLAVE=true --link master:`mysql` dockercolin/mysql_ms:5.6.24
   
   # you cat set customed replicated-db in my.cnf 
   master node:  -v /tmp/my-master.cnf:/etc/my.cnf
