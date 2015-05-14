@@ -1,14 +1,34 @@
-FROM centos
-MAINTAINER Colin(bsply@126.com)
-RUN export LANG=en_US.UTF-8
+FROM dockercolin/centos:youyuan
+MAINTAINER Colin
+# SET VARIABLE
+ENV REDIS_SLAVE **RANDOM**
+
+# add redis
 RUN groupadd -r redis && useradd -r -g redis redis
-RUN rpm -iUvh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
-RUN yum install -y redis
-VOLUME ["/usr/local/redis/logs","/usr/local/redis/var"]
-RUN chown -R redis:redis /usr/local/redis
-WORKDIR /usr/local/redis/conf/
+
+# install
+#ADD install3.sh /install.sh
+#RUN /install.sh
+RUN yum install -y wget tar make gcc
+RUN wget http://download.redis.io/releases/redis-3.0.0.tar.gz && tar -zxf redis-3.0.0.tar.gz 
+RUN cd redis-3.0.0 && make && make install && cp src/redis-cli src/redis-server /usr/sbin/
+RUN mkdir -p /usr/local/redis/{conf,bin,logs,var} && chown -R redis:redis /usr/local/redis
+
+# clean
+RUN yum clean all && rm -rf redis-3.0.0.tar.gz
+
+# set volume
+VOLUME ["/usr/local/redis/"]
+
+# add configuration file
 ADD redis.conf /etc/redis.conf
 ADD sysctl.conf /etc/sysctl.conf
+
+# add start scripts
+ADD run.sh /run.sh
+
+# expose port 
 EXPOSE 6379
-ENTRYPOINT  ["/usr/sbin/redis-server"]
-CMD  ["/etc/redis.conf"]
+
+# entrypoint 
+ENTRYPOINT ["/run.sh"]
