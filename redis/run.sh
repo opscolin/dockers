@@ -3,6 +3,8 @@
 REDIS_SERVER='/usr/sbin/redis-server'
 REDIS_CONFIG='/etc/redis.conf'
 
+export PATH=$PATH:${REDIS_HOME}
+
 if [ ${REDIS_SLAVE} = '**RANDOM**' ]
 then
 	echo "no slave and unset variable"
