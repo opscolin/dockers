@@ -14,4 +14,7 @@
     
 ### push 
     docker push dockercolin/cell:latest
+    
+## Hint
+    the folder /var/catfish/cell under host is the root directory of cell service
 
