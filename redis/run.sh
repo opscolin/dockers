@@ -11,7 +11,9 @@ elif [ ${REDIS_SLAVE} = 'slave' ] || [ ${REDIS_SLAVE} = 'SLAVE' ]
 then
 	echo "try to set slave"
 	ifslaveof=`cat ${REDIS_CONFIG} |grep -i slaveof`
-	if [ -n ${ifslaveof} ]
+	#if [ -n ${ifslaveof} ]
+	# -n is used for a continuous string like 'abcd', not 'a b c'
+	if [ ${#ifslaveof} -eq 0 ]
 	then
 		echo "=> Try to set slaveof"
 		echo "=> IP : ${REDIS_PORT_6379_TCP_ADDR}"
