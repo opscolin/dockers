@@ -16,6 +16,13 @@ Installation
     1,install Docker first 
     2,docker pull dockercolin/redis:3.0.0ms
 
+environment 
+----------------------------------
+  LANG=en_US.UTF-8
+  REDIS_HOME=/usr/local/redis
+  
+  
+
 Usage:
 -------------------------------
 
