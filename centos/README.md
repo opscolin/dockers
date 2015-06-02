@@ -31,3 +31,14 @@ SSH Dockerfile
     [root@d15a9e8667b7 ~]# hostname
     `d15a9e8667b7`
 
+##  Project Base Image
+
+### build
+    docker build --rm -t dockercolin/centos:youyuan .
+    
+### environment 
+    LANG=en_US.UTF-8
+
+### push 
+    docker push dockercolin/centos:youyuan
+    
