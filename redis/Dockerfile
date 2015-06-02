@@ -17,7 +17,9 @@ RUN mkdir -p /usr/local/redis/{conf,bin,logs,var} && chown -R redis:redis /usr/l
 
 # clean
 RUN yum clean all && rm -rf redis-3.0.0.tar.gz
-RUN export PATH=$PATH:${REDIS_HOME}
+# need to set in start script
+#RUN export PATH=$PATH:${REDIS_HOME}
+
 
 # set volume
 VOLUME ["/usr/local/redis/"]
