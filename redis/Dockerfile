@@ -2,6 +2,7 @@ FROM dockercolin/centos:youyuan
 MAINTAINER Colin
 # SET VARIABLE
 ENV REDIS_SLAVE **RANDOM**
+ENV REDIS_HOME /usr/local/reids/
 
 # add redis
 RUN groupadd -r redis && useradd -r -g redis redis
@@ -16,6 +17,7 @@ RUN mkdir -p /usr/local/redis/{conf,bin,logs,var} && chown -R redis:redis /usr/l
 
 # clean
 RUN yum clean all && rm -rf redis-3.0.0.tar.gz
+RUN export PATH=$PATH:${REDIS_HOME}
 
 # set volume
 VOLUME ["/usr/local/redis/"]
